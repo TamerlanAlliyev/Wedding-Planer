@@ -12,45 +12,50 @@ function scrollTo(id) {
 }
 
 // ============================================================
-// BIO NAV (main navigation)
+// SITE HEADER — Hamburger (mobile) + keyboard
 // ============================================================
+const navToggle = document.querySelector('.site-header__toggle');
+const mainNav = document.getElementById('main-nav');
+const navMenu = document.getElementById('nav-menu');
+
+function openNav() {
+  if (navToggle) navToggle.setAttribute('aria-expanded', 'true');
+  if (mainNav) mainNav.classList.add('is-open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeNav() {
+  if (navToggle) navToggle.setAttribute('aria-expanded', 'false');
+  if (mainNav) mainNav.classList.remove('is-open');
+  document.body.style.overflow = '';
+}
+
+if (navToggle && mainNav) {
+  navToggle.addEventListener('click', () => {
+    const open = navToggle.getAttribute('aria-expanded') === 'true';
+    if (open) closeNav();
+    else openNav();
+  });
+  // Close on link click (mobile)
+  mainNav.querySelectorAll('.site-header__link').forEach(link => {
+    link.addEventListener('click', () => closeNav());
+  });
+  // Close on Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeNav();
+  });
+}
+
+// Optional: legacy bio nav (single-page scroll) — only when present
 document.querySelectorAll('.bio__nav-link').forEach(link => {
   link.addEventListener('click', e => {
     const href = link.getAttribute('href');
-    if (href && href.startsWith('#')) {
+    if (href && href.startsWith('#') && href !== '#') {
       e.preventDefault();
-      document.querySelectorAll('.bio__nav-link').forEach(l => l.classList.remove('is-active'));
-      link.classList.add('is-active');
-      if (href === '#') {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      } else {
-        scrollTo(href);
-      }
+      scrollTo(href);
     }
   });
 });
-
-// Scroll-da aktiv bio menu linkini yenilə
-function updateBioMenuActive() {
-  const links = document.querySelectorAll('.bio__nav-link');
-  const sections = [];
-  links.forEach(link => {
-    const href = link.getAttribute('href');
-    if (href && href !== '#') {
-      const el = document.querySelector(href);
-      if (el) sections.push({ id: href, el, link });
-    }
-  });
-  const y = window.scrollY + 120;
-  let activeLink = document.querySelector('.bio__nav-link[href="#"]');
-  for (const { id, el, link } of sections) {
-    if (el.offsetTop <= y) activeLink = link;
-  }
-  links.forEach(l => l.classList.remove('is-active'));
-  if (activeLink) activeLink.classList.add('is-active');
-}
-window.addEventListener('scroll', () => { requestAnimationFrame(updateBioMenuActive); }, { passive: true });
-window.addEventListener('load', updateBioMenuActive);
 
 // ============================================================
 // HERO PARALLAX
@@ -127,21 +132,18 @@ const statsObserver = new IntersectionObserver(entries => {
 if (statsSection) statsObserver.observe(statsSection);
 
 // ============================================================
-// GALLERY FILTER + MASONRY + LIGHTBOX
+// GALLERY FILTER + MASONRY + LIGHTBOX (only when gallery present)
 // ============================================================
 const galleryItems = document.querySelectorAll('.gallery__item');
 const filterBtns = document.querySelectorAll('.gallery__filter-btn');
 
-// Init: show all
-galleryItems.forEach(item => item.classList.add('visible'));
+if (galleryItems.length) galleryItems.forEach(item => item.classList.add('visible'));
 
 filterBtns.forEach(btn => {
   btn.addEventListener('click', () => {
     filterBtns.forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-
     const cat = btn.dataset.category;
-
     galleryItems.forEach(item => {
       if (cat === 'all' || item.dataset.category === cat) {
         item.classList.add('visible');
@@ -154,7 +156,7 @@ filterBtns.forEach(btn => {
   });
 });
 
-// Lightbox
+// Lightbox (only when lightbox and gallery exist)
 const lightbox = document.querySelector('.lightbox');
 const lightboxImg = document.querySelector('.lightbox__img');
 const lightboxCounter = document.querySelector('.lightbox__counter');
@@ -194,30 +196,27 @@ function lightboxNav(dir) {
   }, 150);
 }
 
-lightboxImg.style.transition = 'opacity 0.15s';
+if (lightboxImg) lightboxImg.style.transition = 'opacity 0.15s';
 
-galleryItems.forEach((item, i) => {
-  item.addEventListener('click', () => {
-    visibleItems = getVisibleItems();
-    const visibleIndex = visibleItems.indexOf(item);
-    openLightbox(visibleIndex);
+if (galleryItems.length && lightbox) {
+  galleryItems.forEach((item) => {
+    item.addEventListener('click', () => {
+      visibleItems = getVisibleItems();
+      const visibleIndex = visibleItems.indexOf(item);
+      openLightbox(visibleIndex);
+    });
   });
-});
-
-document.querySelector('.lightbox__close')?.addEventListener('click', closeLightbox);
-document.querySelector('.lightbox__prev')?.addEventListener('click', e => { e.stopPropagation(); lightboxNav(-1); });
-document.querySelector('.lightbox__next')?.addEventListener('click', e => { e.stopPropagation(); lightboxNav(1); });
-
-lightbox?.addEventListener('click', e => {
-  if (e.target === lightbox) closeLightbox();
-});
-
-document.addEventListener('keydown', e => {
-  if (!lightbox.classList.contains('open')) return;
-  if (e.key === 'Escape') closeLightbox();
-  if (e.key === 'ArrowLeft') lightboxNav(-1);
-  if (e.key === 'ArrowRight') lightboxNav(1);
-});
+  document.querySelector('.lightbox__close')?.addEventListener('click', closeLightbox);
+  document.querySelector('.lightbox__prev')?.addEventListener('click', e => { e.stopPropagation(); lightboxNav(-1); });
+  document.querySelector('.lightbox__next')?.addEventListener('click', e => { e.stopPropagation(); lightboxNav(1); });
+  lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', e => {
+    if (!lightbox.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') lightboxNav(-1);
+    if (e.key === 'ArrowRight') lightboxNav(1);
+  });
+}
 
 // ============================================================
 // TESTIMONIALS SLIDER
@@ -290,7 +289,7 @@ function startAutoplay() {
   testimonialsAutoplay = setInterval(() => goToSlide(currentSlide + 1), 6000);
 }
 
-// Init
+// Init (only when testimonials section present)
 if (testimonialSlides.length) {
   goToSlide(0);
   startAutoplay();
@@ -381,13 +380,26 @@ inquiryForm?.addEventListener('submit', async e => {
 });
 
 // ============================================================
-// SMOOTH CTA SCROLL BUTTONS
+// SMOOTH CTA — scroll to #contact on same page, else go to contact.html
 // ============================================================
 document.querySelectorAll('[data-scroll-contact]').forEach(btn => {
-  btn.addEventListener('click', () => scrollTo('#contact'));
+  btn.addEventListener('click', (e) => {
+    const contactEl = document.getElementById('contact');
+    if (contactEl) {
+      e.preventDefault();
+      scrollTo('contact');
+    }
+    // else: let default href (contact.html) work
+  });
 });
 document.querySelectorAll('[data-scroll-gallery]').forEach(btn => {
-  btn.addEventListener('click', () => scrollTo('#gallery'));
+  btn.addEventListener('click', (e) => {
+    const galleryEl = document.getElementById('gallery');
+    if (galleryEl) {
+      e.preventDefault();
+      scrollTo('gallery');
+    }
+  });
 });
 
 // Logo / başlıq üçün yuxarı scroll (lazım olsa: .bio__name)

@@ -5,13 +5,78 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Elena Voss — Fine Art Wedding Photography</title>
   <meta name="description" content="Fine art wedding photography rooted in emotion, light, and timeless elegance. Based in Vienna — available worldwide." />
+  <link rel="canonical" href="https://www.elenavoss.com/index.html" />
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.elenavoss.com/" />
+  <meta property="og:title" content="Elena Voss — Fine Art Wedding Photography" />
+  <meta property="og:description" content="Fine art wedding photography rooted in emotion, light, and timeless elegance. Based in Vienna — available worldwide." />
+  <meta property="og:locale" content="en_US" />
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Elena Voss — Fine Art Wedding Photography" />
+  <meta name="twitter:description" content="Fine art wedding photography rooted in emotion, light, and timeless elegance. Based in Vienna — available worldwide." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Elena Voss",
+    "jobTitle": "Fine Art Wedding Photographer",
+    "url": "https://www.elenavoss.com",
+    "image": "https://images.unsplash.com/photo-1600696444233-20accba67df3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400&q=80",
+    "address": { "@type": "PostalAddress", "addressLocality": "Vienna", "addressCountry": "AT" },
+    "sameAs": ["https://instagram.com"],
+    "knowsAbout": ["Wedding Photography", "Fine Art Photography", "Destination Weddings"],
+    "description": "Fine art wedding photography rooted in emotion, light, and timeless elegance. Based in Vienna — available worldwide."
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Elena Voss Photography",
+    "description": "Wedding photography services: ceremony coverage, couple portraits, reception and detail photography. Fine art style, worldwide.",
+    "url": "https://www.elenavoss.com",
+    "areaServed": ["Austria", "Europe", "Worldwide"],
+    "serviceType": ["Wedding Photography", "Engagement Sessions", "Destination Weddings"]
+  }
+  </script>
 </head>
 <body>
 
+<!-- ============================================================
+  SITE HEADER (global nav)
+============================================================ -->
+<header class="site-header" id="site-header" role="banner">
+  <div class="site-header__inner">
+    <a href="index.html" class="site-header__logo" aria-label="Elena Voss — Home">
+      <span class="site-header__logo-icon" aria-hidden="true">E</span>
+      <span>Elena Voss</span>
+    </a>
+    <nav class="site-header__nav" id="main-nav" aria-label="Main navigation">
+      <ul class="site-header__list" id="nav-menu">
+        <li><a href="index.html" class="site-header__link" aria-current="page">Home</a></li>
+        <li><a href="about.html" class="site-header__link">About</a></li>
+        <li><a href="services.html" class="site-header__link">Services</a></li>
+        <li><a href="portfolio.html" class="site-header__link">Portfolio</a></li>
+        <li><a href="testimonials.html" class="site-header__link">Testimonials</a></li>
+        <li><a href="faq.html" class="site-header__link">FAQ</a></li>
+        <li><a href="contact.html" class="site-header__link">Contact</a></li>
+      </ul>
+    </nav>
+    <button type="button" class="site-header__toggle nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle menu">
+      <span class="nav-toggle__bar" aria-hidden="true"></span>
+      <span class="nav-toggle__bar" aria-hidden="true"></span>
+      <span class="nav-toggle__bar" aria-hidden="true"></span>
+    </button>
+  </div>
+</header>
+
+<main id="main-content">
 <!-- ============================================================
   HERO — Portfolio bio banner
 ============================================================ -->
@@ -55,21 +120,7 @@
       </a>
     </div>
   </div>
-  <!-- Sticky nav — scroll-da yuxarıda sabit görünür -->
-  <div class="bio__nav-sticky">
-    <div class="bio__inner">
-      <nav class="bio__nav" aria-label="Main navigation">
-        <a href="#" class="bio__nav-link is-active">Home</a>
-        <a href="#gallery" class="bio__nav-link">Portfolio</a>
-        <a href="#about" class="bio__nav-link">About</a>
-        <a href="#services" class="bio__nav-link">Services</a>
-        <a href="#pricing" class="bio__nav-link">Pricing</a>
-        <a href="#contact" class="bio__nav-link">Contact</a>
-      </nav>
-    </div>
-  </div>
   <div class="bio__inner">
-    <p class="bio__quote">"Every love story deserves to be beautifully told."</p>
     <div class="bio__text">
       <p>Fine art wedding photography rooted in emotion, light, and timeless elegance. My name is Elena Voss, and I'm based in Vienna — available worldwide. I believe the best photographs feel, not just look. Over eight years I've had the privilege of documenting hundreds of weddings across Europe and beyond.</p>
     </div>
@@ -305,7 +356,7 @@
       <div class="header-row">
         <h2 id="services-heading">What I offer for your perfect day</h2>
         <button class="services__link" data-scroll-contact>
-          View Packages
+          Get in touch
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
         </button>
       </div>
@@ -314,10 +365,12 @@
     <div class="services__grid">
       <!-- Ceremony -->
       <div class="services__card reveal" data-delay="1">
-        <div class="services__card-img">
-          <img src="https://images.unsplash.com/photo-1769230365032-4591a0050fe3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=800&q=80" alt="Wedding outdoor ceremony aisle with guests" loading="lazy" />
-          <span class="services__card-tag">01 — Ceremony</span>
-        </div>
+        <a href="services/service-ceremony.html" class="services__card-img-link">
+          <div class="services__card-img">
+            <img src="https://images.unsplash.com/photo-1769230365032-4591a0050fe3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=800&q=80" alt="Wedding outdoor ceremony aisle with guests" loading="lazy" />
+            <span class="services__card-tag">01 — Ceremony</span>
+          </div>
+        </a>
         <div class="services__card-body">
           <h3>The Sacred Moment</h3>
           <p>Every vow, every tear, every embrace — captured with discretion and artistry as your story unfolds before the altar.</p>
@@ -326,19 +379,21 @@
             <li><span>Multiple angles</span></li>
             <li><span>Candid &amp; formal</span></li>
           </ul>
-          <button class="services__card-btn" data-scroll-contact>
-            Inquire
+          <a href="services/service-ceremony.html" class="services__card-btn">
+            View details
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
-          </button>
+          </a>
         </div>
       </div>
 
       <!-- Portraits -->
       <div class="services__card reveal" data-delay="2">
-        <div class="services__card-img">
-          <img src="https://images.unsplash.com/photo-1758810410699-2dc1daec82dc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=800&q=80" alt="Wedding couple portrait at golden hour" loading="lazy" />
-          <span class="services__card-tag">02 — Portraits</span>
-        </div>
+        <a href="services/service-portraits.html" class="services__card-img-link">
+          <div class="services__card-img">
+            <img src="https://images.unsplash.com/photo-1758810410699-2dc1daec82dc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=800&q=80" alt="Wedding couple portrait at golden hour" loading="lazy" />
+            <span class="services__card-tag">02 — Portraits</span>
+          </div>
+        </a>
         <div class="services__card-body">
           <h3>Just the Two of You</h3>
           <p>Golden hour portraits that reflect the quiet intimacy between two people in love. Timeless. Natural. Yours.</p>
@@ -347,19 +402,21 @@
             <li><span>Natural light mastery</span></li>
             <li><span>Editorial styling</span></li>
           </ul>
-          <button class="services__card-btn" data-scroll-contact>
-            Inquire
+          <a href="services/service-portraits.html" class="services__card-btn">
+            View details
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
-          </button>
+          </a>
         </div>
       </div>
 
       <!-- Reception -->
       <div class="services__card reveal" data-delay="3">
-        <div class="services__card-img">
-          <img src="https://images.unsplash.com/photo-1763553113332-800519753e40?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=800&q=80" alt="Luxury wedding reception decoration" loading="lazy" />
-          <span class="services__card-tag">03 — Reception</span>
-        </div>
+        <a href="services/service-reception.html" class="services__card-img-link">
+          <div class="services__card-img">
+            <img src="https://images.unsplash.com/photo-1763553113332-800519753e40?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=800&q=80" alt="Luxury wedding reception decoration" loading="lazy" />
+            <span class="services__card-tag">03 — Reception</span>
+          </div>
+        </a>
         <div class="services__card-body">
           <h3>The Celebration</h3>
           <p>From the first dance to the last song — the joy, the laughter, and all the details you worked so hard to create.</p>
@@ -368,10 +425,10 @@
             <li><span>Dance floor energy</span></li>
             <li><span>Table &amp; decor shots</span></li>
           </ul>
-          <button class="services__card-btn" data-scroll-contact>
-            Inquire
+          <a href="services/service-reception.html" class="services__card-btn">
+            View details
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
-          </button>
+          </a>
         </div>
       </div>
     </div>
@@ -380,110 +437,6 @@
       <p>Looking for a custom package? I'd love to talk.</p>
       <a href="#contact" data-scroll-contact>Get in touch</a>
     </div>
-  </div>
-</section>
-
-
-<!-- ============================================================
-  PRICING
-============================================================ -->
-<section class="pricing" id="pricing" aria-labelledby="pricing-heading">
-  <div class="pricing__inner">
-    <div class="pricing__header reveal">
-      <div class="badge">Investment</div>
-      <h2 id="pricing-heading">Choose your package</h2>
-      <p class="lead">Transparent pricing with no hidden fees. Every package includes full editing and print rights.</p>
-    </div>
-
-    <div class="pricing__grid">
-      <!-- Essential -->
-      <div class="pricing__card reveal" data-delay="1">
-        <div class="pricing__card-body">
-          <div class="pricing__card-name">Essential</div>
-          <div class="pricing__card-price">€1,800</div>
-          <div class="pricing__card-period">Half-day coverage</div>
-          <p class="pricing__card-desc">Perfect for intimate ceremonies and elopements.</p>
-          <ul class="pricing__card-features">
-            <li>
-              <div class="pricing__card-features-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
-              <span>5 hours of coverage</span>
-            </li>
-            <li>
-              <div class="pricing__card-features-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
-              <span>1 photographer</span>
-            </li>
-            <li>
-              <div class="pricing__card-features-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
-              <span>300+ edited images</span>
-            </li>
-            <li>
-              <div class="pricing__card-features-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
-              <span>Online gallery (1 year)</span>
-            </li>
-            <li>
-              <div class="pricing__card-features-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
-              <span>48h sneak preview</span>
-            </li>
-            <li>
-              <div class="pricing__card-features-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
-              <span>Print release included</span>
-            </li>
-          </ul>
-          <button class="pricing__card-cta" data-scroll-contact>Book Essential</button>
-        </div>
-      </div>
-
-      <!-- Signature (featured) -->
-      <div class="pricing__card featured reveal" data-delay="2">
-        <div class="pricing__card-badge" aria-label="Most popular">
-          <svg viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true"><path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
-          Most Popular
-        </div>
-        <div class="pricing__card-body">
-          <div class="pricing__card-name">Signature</div>
-          <div class="pricing__card-price">€3,200</div>
-          <div class="pricing__card-period">Full-day coverage</div>
-          <p class="pricing__card-desc">Our most popular package — the complete story.</p>
-          <ul class="pricing__card-features">
-            <li><div class="pricing__card-features-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div><span>10 hours of coverage</span></li>
-            <li><div class="pricing__card-features-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div><span>1 photographer + assistant</span></li>
-            <li><div class="pricing__card-features-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div><span>600+ edited images</span></li>
-            <li><div class="pricing__card-features-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div><span>Online gallery (lifetime)</span></li>
-            <li><div class="pricing__card-features-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div><span>48h sneak preview</span></li>
-            <li><div class="pricing__card-features-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div><span>Engagement session included</span></li>
-            <li><div class="pricing__card-features-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div><span>Premium album (40 pages)</span></li>
-            <li><div class="pricing__card-features-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div><span>Print release included</span></li>
-          </ul>
-          <button class="pricing__card-cta" data-scroll-contact>Book Signature</button>
-        </div>
-      </div>
-
-      <!-- Prestige -->
-      <div class="pricing__card reveal" data-delay="3">
-        <div class="pricing__card-body">
-          <div class="pricing__card-name">Prestige</div>
-          <div class="pricing__card-price">€5,500</div>
-          <div class="pricing__card-period">Multi-day + destination</div>
-          <p class="pricing__card-desc">The ultimate luxury experience for landmark weddings.</p>
-          <ul class="pricing__card-features">
-            <li><div class="pricing__card-features-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div><span>Unlimited coverage (2 days)</span></li>
-            <li><div class="pricing__card-features-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div><span>2 photographers</span></li>
-            <li><div class="pricing__card-features-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div><span>1000+ edited images</span></li>
-            <li><div class="pricing__card-features-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div><span>Online gallery (lifetime)</span></li>
-            <li><div class="pricing__card-features-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div><span>48h sneak preview</span></li>
-            <li><div class="pricing__card-features-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div><span>Engagement session included</span></li>
-            <li><div class="pricing__card-features-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div><span>Luxury heirloom album</span></li>
-            <li><div class="pricing__card-features-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div><span>Destination travel included</span></li>
-            <li><div class="pricing__card-features-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div><span>Fine art print set</span></li>
-          </ul>
-          <button class="pricing__card-cta" data-scroll-contact>Book Prestige</button>
-        </div>
-      </div>
-    </div>
-
-    <p class="pricing__note reveal">
-      ⚡ Only <strong>4 dates</strong> remaining for summer 2026. All packages include a complimentary consultation.
-    </p>
   </div>
 </section>
 
@@ -901,6 +854,18 @@
 
 
 <!-- ============================================================
+  CTA QUOTE — "Every love story..." (standalone, not part of bio)
+============================================================ -->
+<section class="cta-quote" id="cta-quote" aria-labelledby="cta-quote-heading">
+  <div class="cta-quote__inner">
+    <p class="cta-quote__text" id="cta-quote-heading">"Every love story deserves to be beautifully told."</p>
+    <p class="cta-quote__sub">Let's create something timeless together.</p>
+    <a href="contact.html" class="cta-quote__btn about__cta">Get in touch</a>
+  </div>
+</section>
+
+
+<!-- ============================================================
   FINAL CTA
 ============================================================ -->
 <section class="final-cta" aria-label="Call to action">
@@ -926,10 +891,10 @@
         <p>Let's create something timeless together. Reach out today and let's start the conversation about your day.</p>
 
         <div class="final-cta__actions">
-          <button class="final-cta__cta" data-scroll-contact>
+          <a href="contact.html" class="final-cta__cta">
             Start Your Inquiry
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
-          </button>
+          </a>
           <div class="final-cta__note">
             <span class="divider" aria-hidden="true"></span>
             Response within 24 hours
@@ -1055,6 +1020,7 @@
   </div>
 </section>
 
+</main>
 
 <!-- ============================================================
   FOOTER
@@ -1088,11 +1054,13 @@
       <div class="footer__col">
         <div class="footer__col-title">Navigate</div>
         <ul>
-          <li><a href="#gallery">Portfolio</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#pricing">Pricing</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="testimonials.html">Testimonials</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="contact.html">Contact</a></li>
         </ul>
       </div>
 
@@ -1100,11 +1068,11 @@
       <div class="footer__col">
         <div class="footer__col-title">Services</div>
         <ul>
-          <li><a href="#services-full">Wedding Photography</a></li>
-          <li><a href="#services-full">Engagement Sessions</a></li>
-          <li><a href="#services-full">Elopements</a></li>
-          <li><a href="#services-full">Destination Weddings</a></li>
-          <li><a href="#contact">Custom Packages</a></li>
+          <li><a href="services/service-ceremony.html">Ceremony</a></li>
+          <li><a href="services/service-portraits.html">Portraits</a></li>
+          <li><a href="services/service-reception.html">Reception</a></li>
+          <li><a href="services.html">All Services</a></li>
+          <li><a href="contact.html">Custom Packages</a></li>
         </ul>
       </div>
 
@@ -1115,7 +1083,7 @@
           <li><a href="#">Privacy Policy</a></li>
           <li><a href="#">Terms of Service</a></li>
           <li><a href="#">Cookie Policy</a></li>
-          <li><a href="#">Sitemap</a></li>
+          <li><a href="sitemap.xml">Sitemap</a></li>
         </ul>
       </div>
     </div>
@@ -1131,6 +1099,6 @@
   </div>
 </footer>
 
-<script src="main.js"></script>
+<script src="main.js" defer></script>
 </body>
 </html>
