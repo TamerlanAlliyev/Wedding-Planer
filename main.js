@@ -448,16 +448,21 @@ if (galleryItems.length && lightbox) {
 document.querySelectorAll('.faq__question').forEach(btn => {
   btn.addEventListener('click', () => {
     const item = btn.closest('.faq__item');
-    const answer = item.querySelector('.faq__answer');
-    const isOpen = answer.classList.contains('open');
+    const answer = item ? item.querySelector('.faq__answer') : null;
+    const isOpen = answer && answer.classList.contains('open');
 
-    // Close all
+    document.querySelectorAll('.faq__item').forEach(i => i.classList.remove('is-open'));
     document.querySelectorAll('.faq__answer').forEach(a => a.classList.remove('open'));
-    document.querySelectorAll('.faq__question').forEach(q => q.classList.remove('open'));
+    document.querySelectorAll('.faq__question').forEach(q => {
+      q.classList.remove('open');
+      q.setAttribute('aria-expanded', 'false');
+    });
 
-    if (!isOpen) {
+    if (!isOpen && answer) {
+      item.classList.add('is-open');
       answer.classList.add('open');
       btn.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
     }
   });
 });
@@ -465,9 +470,12 @@ document.querySelectorAll('.faq__question').forEach(btn => {
 // Open first FAQ by default
 const firstFaqBtn = document.querySelector('.faq__question');
 const firstFaqAnswer = document.querySelector('.faq__answer');
+const firstFaqItem = firstFaqBtn && firstFaqBtn.closest('.faq__item');
 if (firstFaqBtn && firstFaqAnswer) {
   firstFaqBtn.classList.add('open');
+  firstFaqBtn.setAttribute('aria-expanded', 'true');
   firstFaqAnswer.classList.add('open');
+  if (firstFaqItem) firstFaqItem.classList.add('is-open');
 }
 
 // ============================================================
