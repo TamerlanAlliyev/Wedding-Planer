@@ -219,6 +219,21 @@ if (galleryItems.length && lightbox) {
     if (e.key === 'ArrowLeft') lightboxNav(-1);
     if (e.key === 'ArrowRight') lightboxNav(1);
   });
+
+  // Touch swipe on lightbox: sola = növbəti, sağa = əvvəlki
+  let touchStartX = 0;
+  const swipeMin = 50;
+  lightbox.addEventListener('touchstart', e => {
+    if (!lightbox.classList.contains('open')) return;
+    touchStartX = e.changedTouches[0].clientX;
+  }, { passive: true });
+  lightbox.addEventListener('touchend', e => {
+    if (!lightbox.classList.contains('open')) return;
+    const touchEndX = e.changedTouches[0].clientX;
+    const diff = touchStartX - touchEndX;
+    if (diff > swipeMin) lightboxNav(1);
+    else if (diff < -swipeMin) lightboxNav(-1);
+  }, { passive: true });
 }
 
 // ============================================================
