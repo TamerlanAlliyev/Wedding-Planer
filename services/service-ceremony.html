@@ -12,20 +12,28 @@
 </head>
 <body>
 
-<!-- Service page header -->
-<header class="service-header" role="banner">
-  <div class="service-header__inner">
-    <a href="../index.html" class="service-header__logo" aria-label="Farida Eyubova — Ana səhifə">
-      <span class="service-header__logo-icon" aria-hidden="true">F</span>
+<header class="site-header" id="site-header" role="banner">
+  <div class="site-header__inner">
+    <a href="../index.html" class="site-header__logo" aria-label="Farida Eyubova — Ana səhifə">
+      <span class="site-header__logo-icon" aria-hidden="true">F</span>
       <span>Farida Eyubova</span>
     </a>
-    <nav class="service-header__nav" aria-label="Əsas menyu">
-      <a href="../index.html" class="service-header__nav-link">Ana səhifə</a>
-      <a href="../index.html#gallery" class="service-header__nav-link">Portfel</a>
-      <a href="../index.html#about" class="service-header__nav-link">Haqqımda</a>
-      <a href="../index.html#services-full" class="service-header__nav-link">Xidmətlər</a>
-      <a href="../index.html#contact" class="service-header__nav-link">Əlaqə</a>
+    <nav class="site-header__nav" id="main-nav" aria-label="Əsas menyu">
+      <ul class="site-header__list" id="nav-menu">
+        <li><a href="../index.html" class="site-header__link">Ana səhifə</a></li>
+        <li><a href="../about.html" class="site-header__link">Haqqımda</a></li>
+        <li><a href="../services.html" class="site-header__link" aria-current="page">Xidmətlər</a></li>
+        <li><a href="../portfolio.html" class="site-header__link">Portfel</a></li>
+        <li><a href="../testimonials.html" class="site-header__link">Rəylər</a></li>
+        <li><a href="../faq.html" class="site-header__link">FAQ</a></li>
+        <li><a href="../contact.html" class="site-header__link">Əlaqə</a></li>
+      </ul>
     </nav>
+    <button type="button" class="site-header__toggle nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Menyunu aç və ya bağla">
+      <span class="nav-toggle__bar" aria-hidden="true"></span>
+      <span class="nav-toggle__bar" aria-hidden="true"></span>
+      <span class="nav-toggle__bar" aria-hidden="true"></span>
+    </button>
   </div>
 </header>
 
@@ -145,13 +153,6 @@
           <li><a href="service-portraits.html">Portretlər</a></li>
           <li><a href="service-reception.html">Qonaq qəbuli</a></li>
           <li><a href="../contact.html">Fərdi paketlər</a></li>
-        </ul>
-      </div>
-      <div class="footer__col">
-        <div class="footer__col-title">Qanuni</div>
-        <ul>
-          <li><a href="#">Məxfilik</a></li>
-          <li><a href="#">İstifadə şərtləri</a></li>
         </ul>
       </div>
     </div>
