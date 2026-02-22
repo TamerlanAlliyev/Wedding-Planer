@@ -1,6 +1,6 @@
 // ============================================================
-// Elena Voss — Wedding Photography Portfolio
-// Main JavaScript
+// Farida Eyubova — Toy Təşkilatçısı
+// Əsas JavaScript
 // ============================================================
 
 'use strict';

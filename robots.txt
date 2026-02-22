@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.elenavoss.com/sitemap.xml
+Sitemap: https://www.faridaeyubova.com/sitemap.xml

@@ -56,7 +56,7 @@
 - [ ] **Nav**: Desktop-da bütün linklər işləyir; mobil hamburger açılır/bağlanır; klaviatura ilə Tab və Enter/Space işləyir; Escape menyunu bağlayır.
 - [ ] **Portfolio**: portfolio.html-də gallery filter və lightbox index-dəki kimi işləyir; CSS/JS dəyişməyib.
 - [ ] **Hər səhifə**: Unikal title, description; OG/Twitter (ən azı index); canonical (mümkün olan yerdə).
-- [ ] **sitemap.xml / robots.txt**: Düzgün URL-lər; domaini deploy-da əvəz edin (https://www.elenavoss.com).
+- [ ] **sitemap.xml / robots.txt**: Düzgün URL-lər; domaini deploy-da əvəz edin (https://www.faridaeyubova.com).
 - [ ] **Daxili linklər**: Footer və header linkləri heç bir səhifədə qırıq deyil (services.html, testimonials.html, faq.html yaradılandan sonra).
 - [ ] **Form**: contact.html (və index #contact) üzərində label, required, error mesajları və submit sonrası success state işləyir.
 - [ ] **prefers-reduced-motion**: *(İstəsəniz CSS-də `@media (prefers-reduced-motion: reduce)` əlavə edə bilərsiniz.)*
