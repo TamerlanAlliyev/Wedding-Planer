@@ -61,6 +61,11 @@ document.querySelectorAll('.bio__nav-link').forEach(link => {
 });
 
 // ============================================================
+// MOTION — reduced-motion preference
+// ============================================================
+const prefersReducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// ============================================================
 // HERO PARALLAX
 // ============================================================
 const heroBg = document.querySelector('.hero__bg img');
@@ -68,7 +73,7 @@ const heroContent = document.querySelector('.hero__content');
 const heroSection = document.querySelector('.hero');
 
 function handleHeroParallax() {
-  if (!heroBg || !heroSection) return;
+  if (prefersReducedMotion() || !heroBg || !heroSection) return;
   const scrollY = window.scrollY;
   const heroH = heroSection.offsetHeight;
   const progress = scrollY / heroH;
@@ -104,13 +109,14 @@ revealEls.forEach(el => revealObserver.observe(el));
 // ============================================================
 // STATS COUNTER
 // ============================================================
-function countUp(el, target, duration = 1600) {
+function countUp(el, target, duration) {
+  if (duration == null) duration = prefersReducedMotion() ? 0 : 2000;
   let start = null;
   const suffix = el.dataset.suffix || '';
 
   function step(timestamp) {
     if (!start) start = timestamp;
-    const progress = Math.min((timestamp - start) / duration, 1);
+    const progress = duration <= 0 ? 1 : Math.min((timestamp - start) / duration, 1);
     const eased = 1 - Math.pow(1 - progress, 3);
     el.textContent = Math.floor(eased * target) + suffix;
     if (progress < 1) requestAnimationFrame(step);
@@ -196,10 +202,10 @@ function lightboxNav(dir) {
     lightboxImg.alt = item.querySelector('img').alt;
     lightboxCounter.textContent = `${currentLightboxIndex + 1} / ${visibleItems.length}`;
     lightboxImg.style.opacity = '1';
-  }, 150);
+  }, 280);
 }
 
-if (lightboxImg) lightboxImg.style.transition = 'opacity 0.15s';
+if (lightboxImg) lightboxImg.style.transition = 'opacity 0.28s';
 
 if (galleryItems.length && lightbox) {
   galleryItems.forEach((item) => {

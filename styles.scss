@@ -51,6 +51,21 @@
   --dur-normal: 250ms;
   --dur-slow: 400ms;
 
+  // ── Premium Motion System ───────────────────────────────────
+  --motion-ease-out: cubic-bezier(0.19, 1, 0.36, 1);
+  --motion-ease-in: cubic-bezier(0.5, 0, 0.75, 0);
+  --motion-ease-smooth: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --motion-duration-instant: 120ms;
+  --motion-duration-fast: 280ms;
+  --motion-duration-normal: 380ms;
+  --motion-duration-slow: 520ms;
+  --motion-duration-entrance: 720ms;
+  --motion-distance-sm: 8px;
+  --motion-distance-md: 24px;
+  --motion-distance-lg: 32px;
+  --motion-stagger: 0.08s;
+  --motion-reduced: 1;
+
   // ── Section Header Design Tokens ─────────────────────────
   // Single source of truth for badge → heading → lead blocks.
   // Override locally on a per-section basis when context requires it.
@@ -65,6 +80,18 @@
   --sh-lead-color: var(--text-muted);
   --sh-lead-mw:    560px;
   --sh-mb:         clamp(3rem, 6vw, 5rem);         // header block → content gap
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-duration-instant: 0ms;
+    --motion-duration-fast: 0ms;
+    --motion-duration-normal: 0ms;
+    --motion-duration-slow: 0ms;
+    --motion-duration-entrance: 0ms;
+    --motion-reduced: 0;
+  }
+  html { scroll-behavior: auto; }
 }
 
 // ── Reset & Base ─────────────────────────────────────────────
@@ -164,7 +191,7 @@ h4, h5, h6 {
   text-transform: uppercase;
   border: none;
   box-shadow: 0 8px 32px rgba(124,173,207,0.40);
-  transition: all var(--dur-normal) var(--ease-out);
+  transition: background calc(var(--motion-duration-normal) * var(--motion-reduced)) var(--motion-ease-out), transform calc(var(--motion-duration-normal) * var(--motion-reduced)) var(--motion-ease-out), box-shadow calc(var(--motion-duration-normal) * var(--motion-reduced)) var(--motion-ease-out);
 
   &:hover {
     background: var(--color-medium-blue-hover);
@@ -195,32 +222,38 @@ h4, h5, h6 {
   }
 }
 
-// ── Scroll Animations ────────────────────────────────────────
+// ── Scroll Reveal (Premium Motion System) ─────────────────────
 .reveal {
   opacity: 0;
-  transform: translateY(32px);
-  transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+  transform: translateY(var(--motion-distance-md));
+  transition:
+    opacity calc(var(--motion-duration-entrance) * var(--motion-reduced)) var(--motion-ease-out),
+    transform calc(var(--motion-duration-entrance) * var(--motion-reduced)) var(--motion-ease-out);
 
   &.visible { opacity: 1; transform: translateY(0); }
 
   @for $i from 1 through 8 {
     &[data-delay="#{$i}"] {
-      transition-delay: #{$i * 0.1}s;
+      transition-delay: calc(#{$i} * var(--motion-stagger));
     }
   }
 }
 
 .reveal-left {
   opacity: 0;
-  transform: translateX(-40px);
-  transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
+  transform: translateX(calc(-1 * var(--motion-distance-md)));
+  transition:
+    opacity calc(var(--motion-duration-entrance) * var(--motion-reduced)) var(--motion-ease-out),
+    transform calc(var(--motion-duration-entrance) * var(--motion-reduced)) var(--motion-ease-out);
   &.visible { opacity: 1; transform: translateX(0); }
 }
 
 .reveal-right {
   opacity: 0;
-  transform: translateX(40px);
-  transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
+  transform: translateX(var(--motion-distance-md));
+  transition:
+    opacity calc(var(--motion-duration-entrance) * var(--motion-reduced)) var(--motion-ease-out),
+    transform calc(var(--motion-duration-entrance) * var(--motion-reduced)) var(--motion-ease-out);
   &.visible { opacity: 1; transform: translateX(0); }
 }
 
@@ -231,7 +264,7 @@ h4, h5, h6 {
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 100;
-  transition: background 0.35s var(--ease-out), border-color 0.35s var(--ease-out), box-shadow 0.35s var(--ease-out);
+  transition: background calc(var(--motion-duration-slow) * var(--motion-reduced)) var(--motion-ease-out), border-color calc(var(--motion-duration-slow) * var(--motion-reduced)) var(--motion-ease-out), box-shadow calc(var(--motion-duration-slow) * var(--motion-reduced)) var(--motion-ease-out);
 
   &__inner {
     @include container;
@@ -246,7 +279,7 @@ h4, h5, h6 {
     align-items: center;
     gap: 0.5rem;
     color: #fff;
-    transition: color 0.3s;
+    transition: color calc(var(--motion-duration-normal) * var(--motion-reduced)) var(--motion-ease-out);
 
     &-icon {
       width: 32px; height: 32px;
@@ -265,7 +298,7 @@ h4, h5, h6 {
       font-size: 1.2rem;
       font-weight: 600;
       letter-spacing: 0.01em;
-      transition: color 0.3s;
+      transition: color calc(var(--motion-duration-normal) * var(--motion-reduced)) var(--motion-ease-out);
     }
   }
 
@@ -282,7 +315,7 @@ h4, h5, h6 {
       color: rgba(255,255,255,0.88);
       letter-spacing: 0.04em;
       text-transform: uppercase;
-      transition: color 0.25s;
+      transition: color calc(var(--motion-duration-normal) * var(--motion-reduced)) var(--motion-ease-out);
 
       &:hover { color: var(--color-medium-blue); }
     }
@@ -309,7 +342,7 @@ h4, h5, h6 {
     letter-spacing: 0.08em;
     text-transform: uppercase;
     box-shadow: 0 4px 16px rgba(124,173,207,0.35);
-    transition: all var(--dur-normal) var(--ease-out);
+    transition: background calc(var(--motion-duration-normal) * var(--motion-reduced)) var(--motion-ease-out), transform calc(var(--motion-duration-fast) * var(--motion-reduced)) var(--motion-ease-out), box-shadow calc(var(--motion-duration-normal) * var(--motion-reduced)) var(--motion-ease-out);
 
     &:hover {
       background: var(--color-medium-blue-hover);
@@ -326,16 +359,16 @@ h4, h5, h6 {
     border-radius: 50%;
     background: rgba(255,255,255,0.15);
     color: #fff;
-    transition: all 0.2s;
+    transition: background calc(var(--motion-duration-fast) * var(--motion-reduced)) var(--motion-ease-out), color calc(var(--motion-duration-fast) * var(--motion-reduced)) var(--motion-ease-out);
 
     .icon-bar {
       display: block;
       width: 20px; height: 2px;
+
       background: currentColor;
       border-radius: 1px;
-      transition: all 0.3s var(--ease-out);
+      transition: transform calc(var(--motion-duration-normal) * var(--motion-reduced)) var(--motion-ease-out), opacity calc(var(--motion-duration-normal) * var(--motion-reduced)) var(--motion-ease-out);
     }
-
     span { display: flex; flex-direction: column; gap: 5px; }
   }
 
@@ -368,7 +401,7 @@ h4, h5, h6 {
   padding-top: 72px;
   transform: translateY(-100%);
   opacity: 0;
-  transition: transform 0.35s var(--ease-out), opacity 0.35s;
+    transition: transform calc(var(--motion-duration-slow) * var(--motion-reduced)) var(--motion-ease-out), opacity calc(var(--motion-duration-slow) * var(--motion-reduced)) var(--motion-ease-out);
   pointer-events: none;
 
   &.open {
@@ -383,7 +416,7 @@ h4, h5, h6 {
     font-weight: 500;
     color: #fff;
     letter-spacing: -0.01em;
-    transition: color 0.2s;
+    transition: color calc(var(--motion-duration-fast) * var(--motion-reduced)) var(--motion-ease-out);
 
     &:hover { color: var(--color-light-blue); }
   }
@@ -415,7 +448,7 @@ h4, h5, h6 {
       object-fit: cover;
       object-position: center;
       transform: scale(1.1);
-      transition: transform 0.1s linear;
+      transition: transform calc(var(--motion-duration-instant) * var(--motion-reduced)) var(--motion-ease-smooth);
     }
   }
 
@@ -448,7 +481,7 @@ h4, h5, h6 {
     margin: 0 auto;
     left: 0; right: 0;
     opacity: 1;
-    transition: opacity 0.1s;
+    transition: opacity calc(var(--motion-duration-instant) * var(--motion-reduced));
   }
 
   &__badge {
@@ -463,8 +496,8 @@ h4, h5, h6 {
     margin-bottom: 1.5rem;
     align-self: flex-start;
     opacity: 0;
-    transform: translateY(24px);
-    animation: fadeUp 0.7s var(--ease-out) 0.2s forwards;
+    transform: translateY(var(--motion-distance-md));
+    animation: fadeUp calc(var(--motion-duration-entrance) * var(--motion-reduced)) var(--motion-ease-out) 0.2s forwards;
 
     svg { width: 13px; height: 13px; color: var(--color-light-blue); fill: currentColor; }
     span {
@@ -485,10 +518,10 @@ h4, h5, h6 {
     max-width: 760px;
     margin-bottom: 1.5rem;
     opacity: 0;
-    transform: translateY(40px);
-    animation: fadeUp 0.9s var(--ease-out) 0.35s forwards;
+    transform: translateY(var(--motion-distance-md));
+    animation: fadeUp calc(var(--motion-duration-entrance) * 1.1 * var(--motion-reduced)) var(--motion-ease-out) 0.36s forwards;
 
-    em { font-family: 'Great Vibes', cursive; font-style: normal; font-weight: 400; }
+    em { font-family: 'Ephesis', cursive; font-style: normal; font-weight: 400; }
   }
 
   &__sub {
@@ -498,8 +531,8 @@ h4, h5, h6 {
     max-width: 440px;
     margin-bottom: 2.5rem;
     opacity: 0;
-    transform: translateY(30px);
-    animation: fadeUp 0.8s var(--ease-out) 0.55s forwards;
+    transform: translateY(var(--motion-distance-md));
+    animation: fadeUp calc(var(--motion-duration-entrance) * var(--motion-reduced)) var(--motion-ease-out) 0.52s forwards;
   }
 
   &__actions {
@@ -508,8 +541,8 @@ h4, h5, h6 {
     gap: 1rem;
     flex-wrap: wrap;
     opacity: 0;
-    transform: translateY(24px);
-    animation: fadeUp 0.7s var(--ease-out) 0.7s forwards;
+    transform: translateY(var(--motion-distance-md));
+    animation: fadeUp calc(var(--motion-duration-entrance) * 0.95 * var(--motion-reduced)) var(--motion-ease-out) 0.68s forwards;
   }
 
   &__btn-primary { @include btn-primary; }
@@ -524,13 +557,15 @@ h4, h5, h6 {
     background: none;
     border: none;
     letter-spacing: 0.03em;
-    transition: color 0.2s;
+    transition: color calc(var(--motion-duration-fast) * var(--motion-reduced)) var(--motion-ease-out);
 
     &:hover { color: #fff; svg { transform: translateY(3px); } }
-    svg { transition: transform 0.2s; }
+    svg { transition: transform calc(var(--motion-duration-fast) * var(--motion-reduced)) var(--motion-ease-out); }
   }
 
   &__scroll {
+    background: none;
+    border: none;
     position: absolute;
     bottom: 2rem; right: 3rem;
     display: flex;
@@ -538,7 +573,7 @@ h4, h5, h6 {
     align-items: center;
     gap: 0.75rem;
     opacity: 0;
-    animation: fadeIn 0.8s ease 1.2s forwards;
+    animation: fadeIn calc(var(--motion-duration-entrance) * var(--motion-reduced)) var(--motion-ease-smooth) 1.2s forwards;
 
     span {
       font-size: 0.65rem;
@@ -554,10 +589,14 @@ h4, h5, h6 {
       width: 1px;
       height: 40px;
       background: rgba(255,255,255,0.5);
-      animation: scrollPulse 1.5s ease-in-out infinite;
+      animation: scrollPulse 2s var(--motion-ease-smooth) infinite;
       opacity: 0.6;
     }
   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__scroll-line { animation: none; opacity: 0.6; }
 }
 
 @keyframes fadeUp {
@@ -757,7 +796,7 @@ h4, h5, h6 {
     letter-spacing: 0.08em;
     text-transform: uppercase;
     box-shadow: 0 4px 16px rgba(46,58,69,0.18);
-    transition: all var(--dur-normal) var(--ease-out);
+    transition: transform calc(var(--motion-duration-normal) * var(--motion-reduced)) var(--motion-ease-out), box-shadow calc(var(--motion-duration-normal) * var(--motion-reduced)) var(--motion-ease-out);
 
     &:hover {
       transform: translateY(-2px);
@@ -815,11 +854,11 @@ h4, h5, h6 {
     color: #fff;
     line-height: 1.25;
     letter-spacing: 0.02em;
-    font-family: 'Great Vibes', cursive;
+    font-family: 'Ephesis', cursive;
     max-width: 760px;
     margin-bottom: 2rem;
 
-    em { font-family: 'Great Vibes', cursive; color: var(--color-light-blue); }
+    em { font-family: 'Ephesis', cursive; color: var(--color-light-blue); }
   }
 
   &__author {
@@ -874,7 +913,7 @@ h4, h5, h6 {
     background: var(--bg-secondary);
     border: 1px solid var(--color-light-blue);
     box-shadow: var(--shadow-soft);
-    transition: all 0.3s var(--ease-out);
+    transition: transform calc(var(--motion-duration-normal) * var(--motion-reduced)) var(--motion-ease-out), box-shadow calc(var(--motion-duration-normal) * var(--motion-reduced)) var(--motion-ease-out), border-color calc(var(--motion-duration-normal) * var(--motion-reduced)) var(--motion-ease-out);
 
     &:hover {
       transform: translateY(-4px);
@@ -1069,10 +1108,10 @@ h4, h5, h6 {
     font-weight: 600;
     color: var(--color-medium-blue);
     flex-shrink: 0;
-    transition: gap 0.2s var(--ease-out), color 0.2s;
+    transition: gap calc(var(--motion-duration-fast) * var(--motion-reduced)) var(--motion-ease-out), color calc(var(--motion-duration-fast) * var(--motion-reduced)) var(--motion-ease-out);
 
     &:hover { gap: 0.6rem; color: var(--color-medium-blue-hover); }
-    svg { width: 16px; height: 16px; transition: transform 0.2s var(--ease-out); }
+    svg { width: 16px; height: 16px; transition: transform calc(var(--motion-duration-fast) * var(--motion-reduced)) var(--motion-ease-out); }
     &:hover svg { transform: translateX(3px); }
     &:focus-visible { outline: 2px solid var(--color-medium-blue); outline-offset: 2px; }
   }
@@ -1092,7 +1131,7 @@ h4, h5, h6 {
     overflow: hidden;
     aspect-ratio: 4 / 3;
     box-shadow: var(--shadow-soft);
-    transition: transform 0.35s var(--ease-out), box-shadow 0.35s var(--ease-out);
+    transition: transform calc(var(--motion-duration-normal) * var(--motion-reduced)) var(--motion-ease-out), box-shadow calc(var(--motion-duration-normal) * var(--motion-reduced)) var(--motion-ease-out);
 
     &:hover {
       transform: translateY(-4px);
@@ -1120,7 +1159,7 @@ h4, h5, h6 {
         height: 100%;
         object-fit: cover;
         object-position: center;
-        transition: transform 0.6s var(--ease-out);
+        transition: transform calc(var(--motion-duration-slow) * var(--motion-reduced)) var(--motion-ease-out);
       }
 
       &::after {
@@ -1129,6 +1168,7 @@ h4, h5, h6 {
         inset: 0;
         background: linear-gradient(to top, rgba(46, 58, 69, 0.5) 0%, transparent 45%);
         pointer-events: none;
+    // Tag — glass
       }
     }
 
@@ -1151,10 +1191,10 @@ h4, h5, h6 {
       color: rgba(255, 255, 255, 0.98);
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      transition: background 0.3s, border-color 0.3s;
+      transition: background calc(var(--motion-duration-normal) * var(--motion-reduced)) var(--motion-ease-out), border-color calc(var(--motion-duration-normal) * var(--motion-reduced)) var(--motion-ease-out);
     }
 
-    // Alt hissə: ad + Ətraflı — üst kənar 0 blur, aşağıya xətti artan glass (şəkillə harmoniya)
+    // Alt hissə: solda başlıq, sağ küncdə Ətraflı — üst kənar 0 blur, aşağıya xətti artan glass
     &-foot {
       position: absolute;
       bottom: 0;
@@ -1171,11 +1211,16 @@ h4, h5, h6 {
       mask-size: 100% 100%;
       -webkit-mask-size: 100% 100%;
       display: flex;
-      flex-direction: column;
-      gap: 0.35rem;
-      transition: opacity 0.35s var(--ease-out);
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 0.5rem;
+      transition: opacity calc(var(--motion-duration-slow) * var(--motion-reduced)) var(--motion-ease-out);
 
       h3 {
+        flex: 1 1 auto;
+        min-width: 0;
         font-family: var(--font-serif);
         font-size: clamp(1.15rem, 1.8vw, 1.35rem);
         font-weight: 600;
@@ -1188,27 +1233,28 @@ h4, h5, h6 {
     }
 
     &-cta {
+      flex-shrink: 0;
+      align-self: flex-end;
       display: inline-flex;
       align-items: center;
       gap: 0.4rem;
-      align-self: flex-start;
       font-family: var(--font-sans);
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       font-weight: 600;
-      color: rgba(255, 255, 255, 0.95);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--color-light-blue);
       text-decoration: none;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-      transition: border-color 0.2s, gap 0.2s;
-      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+      border-bottom: 1px solid rgba(212, 228, 239, 0.7);
+      flex-shrink: 0;
+      align-self: flex-end;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+      transition: color calc(var(--motion-duration-fast) * var(--motion-reduced)) var(--motion-ease-out), border-color calc(var(--motion-duration-fast) * var(--motion-reduced)) var(--motion-ease-out), gap calc(var(--motion-duration-fast) * var(--motion-reduced)) var(--motion-ease-out);
 
-      &:hover {
-        border-color: #fff;
-        gap: 0.5rem;
-      }
-
-      svg { width: 14px; height: 14px; transition: transform 0.2s; }
+      &:hover { color: #fff; border-color: rgba(255, 255, 255, 0.9); gap: 0.5rem; }
+      svg { width: 14px; height: 14px; transition: transform calc(var(--motion-duration-fast) * var(--motion-reduced)) var(--motion-ease-out); }
       &:hover svg { transform: translateX(3px); }
-      &:focus-visible { outline: 2px solid #fff; outline-offset: 2px; border-radius: 4px; }
+      &:focus-visible { outline: 2px solid var(--color-light-blue); outline-offset: 2px; border-radius: 4px; }
     }
 
     // Hoverda sağdan sola sürüşən 70% panel — glass, tam məzmun
@@ -1230,7 +1276,7 @@ h4, h5, h6 {
       border-left: 1px solid rgba(255, 255, 255, 0.6);
       box-shadow: -8px 0 24px rgba(0, 0, 0, 0.08);
       transform: translateX(100%);
-      transition: transform 0.4s var(--ease-out);
+      transition: transform calc(var(--motion-duration-normal) * var(--motion-reduced)) var(--motion-ease-out);
     }
 
     &:hover &-body {
@@ -1292,7 +1338,7 @@ h4, h5, h6 {
       color: var(--color-medium-blue);
       text-decoration: none;
       border-bottom: 1px solid transparent;
-      transition: color 0.2s, gap 0.2s, border-color 0.2s;
+      transition: color calc(var(--motion-duration-fast) * var(--motion-reduced)) var(--motion-ease-out), gap calc(var(--motion-duration-fast) * var(--motion-reduced)) var(--motion-ease-out), border-color calc(var(--motion-duration-fast) * var(--motion-reduced)) var(--motion-ease-out);
 
       &:hover {
         color: var(--color-medium-blue-hover);
@@ -1300,7 +1346,7 @@ h4, h5, h6 {
         border-bottom-color: var(--color-medium-blue-hover);
       }
 
-      svg { width: 14px; height: 14px; transition: transform 0.2s; }
+      svg { width: 14px; height: 14px; transition: transform calc(var(--motion-duration-fast) * var(--motion-reduced)) var(--motion-ease-out); }
       &:hover svg { transform: translateX(3px); }
       &:focus-visible { outline: 2px solid var(--color-medium-blue); outline-offset: 2px; border-radius: 4px; }
     }
@@ -1311,6 +1357,9 @@ h4, h5, h6 {
     padding-top: clamp(2rem, 4vw, 2.5rem);
     border-top: 1px solid var(--color-light-blue);
     text-align: center;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
   }
 
   &__footer-text {
@@ -1326,7 +1375,7 @@ h4, h5, h6 {
     color: var(--color-medium-blue);
     text-decoration: underline;
     text-underline-offset: 4px;
-    transition: color 0.2s;
+    transition: color calc(var(--motion-duration-fast) * var(--motion-reduced)) var(--motion-ease-out);
 
     &:hover { color: var(--color-medium-blue-hover); }
     &:focus-visible { outline: 2px solid var(--color-medium-blue); outline-offset: 2px; }
@@ -1366,7 +1415,7 @@ h4, h5, h6 {
     background: var(--color-white);
     border: 1px solid var(--color-light-blue);
     box-shadow: var(--shadow-soft);
-    transition: all 0.3s var(--ease-out);
+    transition: transform calc(var(--motion-duration-normal) * var(--motion-reduced)) var(--motion-ease-out), box-shadow calc(var(--motion-duration-normal) * var(--motion-reduced)) var(--motion-ease-out), border-color calc(var(--motion-duration-normal) * var(--motion-reduced)) var(--motion-ease-out);
 
     &:hover:not(.featured) {
       transform: translateY(-4px);
@@ -1496,7 +1545,7 @@ h4, h5, h6 {
       font-weight: 600;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      transition: all var(--dur-normal) var(--ease-out);
+      transition: background calc(var(--motion-duration-normal) * var(--motion-reduced)) var(--motion-ease-out), transform calc(var(--motion-duration-normal) * var(--motion-reduced)) var(--motion-ease-out), box-shadow calc(var(--motion-duration-normal) * var(--motion-reduced)) var(--motion-ease-out);
       background: transparent;
       border: 1.5px solid var(--color-medium-blue);
       color: var(--color-medium-blue);
@@ -1555,7 +1604,7 @@ h4, h5, h6 {
     text-align: center;
     margin-bottom: var(--sh-mb);
 
-    h2 em { font-family: 'Great Vibes', cursive; font-style: normal; font-weight: 400; }
+    h2 em { font-family: 'Ephesis', cursive; font-style: normal; font-weight: 400; }
   }
 
   &__grid {
@@ -1658,7 +1707,7 @@ h4, h5, h6 {
     @include section-heading;
     text-align: center;
     margin-bottom: var(--sh-mb);
-    h2 em { font-family: 'Great Vibes', cursive; font-style: normal; font-weight: 400; }
+    h2 em { font-family: 'Ephesis', cursive; font-style: normal; font-weight: 400; }
   }
 
   &__filters {
@@ -1679,7 +1728,7 @@ h4, h5, h6 {
     border: 1.5px solid var(--color-light-blue);
     background: var(--color-white);
     color: var(--text-secondary);
-    transition: all 0.2s var(--ease-out);
+    transition: transform calc(var(--motion-duration-fast) * var(--motion-reduced)) var(--motion-ease-out), opacity calc(var(--motion-duration-fast) * var(--motion-reduced)) var(--motion-ease-out), background calc(var(--motion-duration-fast) * var(--motion-reduced)) var(--motion-ease-out), border-color calc(var(--motion-duration-fast) * var(--motion-reduced)) var(--motion-ease-out);
 
     &.active, &:hover {
       border-color: var(--color-medium-blue);
@@ -1709,7 +1758,7 @@ h4, h5, h6 {
     img {
       width: 100%;
       display: block;
-      transition: transform 0.7s var(--ease-out);
+      transition: transform calc(var(--motion-duration-slow) * var(--motion-reduced)) var(--motion-ease-out);
     }
 
     &-overlay {
@@ -1721,7 +1770,7 @@ h4, h5, h6 {
       align-items: center;
       justify-content: center;
       opacity: 0;
-      transition: opacity 0.3s;
+      transition: opacity calc(var(--motion-duration-normal) * var(--motion-reduced)) var(--motion-ease-out);
     }
 
     &-zoom {
@@ -1755,7 +1804,7 @@ h4, h5, h6 {
   backdrop-filter: blur(20px);
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.25s;
+  transition: opacity calc(var(--motion-duration-normal) * var(--motion-reduced)) var(--motion-ease-out);
 
   &.open { opacity: 1; pointer-events: all; }
 
@@ -1766,7 +1815,7 @@ h4, h5, h6 {
     border-radius: var(--radius-xl);
     object-fit: contain;
     transform: scale(0.92);
-    transition: transform 0.3s var(--ease-out);
+    transition: transform calc(var(--motion-duration-normal) * var(--motion-reduced)) var(--motion-ease-out);
 
     .lightbox.open & { transform: scale(1); }
   }
@@ -1781,7 +1830,7 @@ h4, h5, h6 {
     color: #fff;
     display: flex; align-items: center; justify-content: center;
     svg { width: 18px; height: 18px; }
-    transition: background 0.2s;
+    transition: background calc(var(--motion-duration-fast) * var(--motion-reduced)) var(--motion-ease-out);
     &:hover { background: rgba(255,255,255,0.20); }
   }
 
@@ -1795,7 +1844,7 @@ h4, h5, h6 {
     color: #fff;
     display: flex; align-items: center; justify-content: center;
     svg { width: 20px; height: 20px; }
-    transition: background 0.2s;
+    transition: background calc(var(--motion-duration-fast) * var(--motion-reduced)) var(--motion-ease-out);
     &:hover { background: rgba(255,255,255,0.20); }
   }
 
@@ -1804,6 +1853,8 @@ h4, h5, h6 {
 
   &__counter {
     position: absolute;
+    display: flex; align-items: center; justify-content: center;
+    transition: background calc(var(--motion-duration-fast) * var(--motion-reduced)) var(--motion-ease-out);
     bottom: 1.5rem;
     left: 50%; transform: translateX(-50%);
     padding: 0.5rem 1rem;
@@ -1813,6 +1864,8 @@ h4, h5, h6 {
     font-size: 0.78rem;
     color: rgba(255,255,255,0.80);
     letter-spacing: 0.08em;
+    display: flex; align-items: center; justify-content: center;
+    transition: background calc(var(--motion-duration-fast) * var(--motion-reduced)) var(--motion-ease-out);
   }
 }
 
@@ -1838,7 +1891,7 @@ h4, h5, h6 {
   &__header {
     margin-bottom: var(--sh-mb);
     @include section-heading;
-    h2 em { font-family: 'Great Vibes', cursive; font-style: normal; font-weight: 400; }
+    h2 em { font-family: 'Ephesis', cursive; font-style: normal; font-weight: 400; }
   }
 
   // ── Scroll viewport: break-out of container, native scroll-snap ──
@@ -1883,7 +1936,7 @@ h4, h5, h6 {
     height: 100%;
     display: flex;
     flex-direction: column;
-    transition: background 0.4s, border-color 0.4s, box-shadow 0.4s;
+    transition: background calc(var(--motion-duration-slow) * var(--motion-reduced)) var(--motion-ease-out), border-color calc(var(--motion-duration-slow) * var(--motion-reduced)) var(--motion-ease-out), box-shadow calc(var(--motion-duration-slow) * var(--motion-reduced)) var(--motion-ease-out);
 
     &.is-active {
       background: var(--color-deep-dark);
@@ -1915,7 +1968,7 @@ h4, h5, h6 {
   }
 
   &__highlight {
-    font-family: 'Great Vibes', cursive;
+    font-family: 'Ephesis', cursive;
     font-size: 1.15rem;
     font-weight: 400;
     color: var(--color-deep-dark);
@@ -1990,7 +2043,7 @@ h4, h5, h6 {
     border: none;
     padding: 0;
     cursor: pointer;
-    transition: width 0.3s var(--ease-out), background 0.3s var(--ease-out);
+    transition: width calc(var(--motion-duration-normal) * var(--motion-reduced)) var(--motion-ease-out), background calc(var(--motion-duration-normal) * var(--motion-reduced)) var(--motion-ease-out);
 
     &.active {
       width: 24px;
@@ -2026,7 +2079,7 @@ h4, h5, h6 {
     }
 
     @include section-heading;
-    h2 em { font-family: 'Great Vibes', cursive; font-style: normal; font-weight: 400; }
+    h2 em { font-family: 'Ephesis', cursive; font-style: normal; font-weight: 400; }
 
     p {
       font-size: 0.95rem;
@@ -2060,7 +2113,7 @@ h4, h5, h6 {
     border: none;
     text-align: left;
     cursor: pointer;
-    transition: color 0.2s;
+    transition: color calc(var(--motion-duration-fast) * var(--motion-reduced)) var(--motion-ease-out);
 
     span {
       font-family: var(--font-serif);
@@ -2068,7 +2121,7 @@ h4, h5, h6 {
       font-weight: 600;
       color: var(--color-deep-dark);
       line-height: 1.3;
-      transition: color 0.2s;
+      transition: color calc(var(--motion-duration-fast) * var(--motion-reduced)) var(--motion-ease-out);
     }
 
     &.open span { color: var(--color-medium-blue); }
@@ -2082,9 +2135,9 @@ h4, h5, h6 {
     display: flex; align-items: center; justify-content: center;
     flex-shrink: 0;
     margin-top: 2px;
-    transition: all var(--dur-normal) var(--ease-out);
+    transition: background calc(var(--motion-duration-normal) * var(--motion-reduced)) var(--motion-ease-out), transform calc(var(--motion-duration-normal) * var(--motion-reduced)) var(--motion-ease-out), box-shadow calc(var(--motion-duration-normal) * var(--motion-reduced)) var(--motion-ease-out);
 
-    svg { width: 14px; height: 14px; color: var(--color-medium-blue); transition: transform 0.3s; }
+    svg { width: 14px; height: 14px; color: var(--color-medium-blue); transition: transform calc(var(--motion-duration-normal) * var(--motion-reduced)) var(--motion-ease-out); }
 
     .open & {
       background: var(--color-medium-blue);
@@ -2096,7 +2149,7 @@ h4, h5, h6 {
   &__answer {
     overflow: hidden;
     max-height: 0;
-    transition: max-height 0.35s var(--ease-out), opacity 0.35s;
+    transition: max-height calc(var(--motion-duration-normal) * var(--motion-reduced)) var(--motion-ease-out), opacity calc(var(--motion-duration-normal) * var(--motion-reduced)) var(--motion-ease-out);
     opacity: 0;
 
     &.open {
@@ -2189,7 +2242,7 @@ h4, h5, h6 {
     letter-spacing: -0.025em;
     margin-bottom: 1.25rem;
 
-    em { font-family: 'Great Vibes', cursive; font-style: normal; font-weight: 400; color: var(--color-light-blue); }
+    em { font-family: 'Ephesis', cursive; font-style: normal; font-weight: 400; color: var(--color-light-blue); }
   }
 
   p {
@@ -2371,7 +2424,7 @@ h4, h5, h6 {
     height: 48px;
     width: 100%;
     outline: none;
-    transition: all 0.2s var(--ease-out);
+    transition: transform calc(var(--motion-duration-fast) * var(--motion-reduced)) var(--motion-ease-out), opacity calc(var(--motion-duration-fast) * var(--motion-reduced)) var(--motion-ease-out), background calc(var(--motion-duration-fast) * var(--motion-reduced)) var(--motion-ease-out), border-color calc(var(--motion-duration-fast) * var(--motion-reduced)) var(--motion-ease-out);
 
     &:focus {
       border-color: var(--color-medium-blue);
@@ -2401,7 +2454,7 @@ h4, h5, h6 {
     text-transform: uppercase;
     border: none;
     box-shadow: 0 4px 16px rgba(124,173,207,0.35);
-    transition: all var(--dur-normal) var(--ease-out);
+    transition: background calc(var(--motion-duration-normal) * var(--motion-reduced)) var(--motion-ease-out), transform calc(var(--motion-duration-normal) * var(--motion-reduced)) var(--motion-ease-out), box-shadow calc(var(--motion-duration-normal) * var(--motion-reduced)) var(--motion-ease-out);
     margin-top: 0.5rem;
     display: flex;
     align-items: center;
@@ -2437,6 +2490,13 @@ h4, h5, h6 {
     font-size: 0.72rem;
     color: var(--text-muted);
     line-height: 1.5;
+    background: var(--color-medium-blue);
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border: none;
     margin-top: 0.75rem;
   }
 
@@ -2518,7 +2578,7 @@ h4, h5, h6 {
     gap: 3rem;
     padding: 5rem 0;
 
-    @media (min-width: 768px) { grid-template-columns: 1.8fr 1fr 1fr 1fr; gap: 3rem; }
+    @media (min-width: 768px) { grid-template-columns: 1.8fr 1fr 1fr; gap: 3rem; }
   }
 
   &__brand {
@@ -2577,7 +2637,7 @@ h4, h5, h6 {
       border: 1px solid rgba(255,255,255,0.12);
       display: flex; align-items: center; justify-content: center;
       color: #fff;
-      transition: all 0.2s var(--ease-out);
+      transition: transform calc(var(--motion-duration-fast) * var(--motion-reduced)) var(--motion-ease-out), opacity calc(var(--motion-duration-fast) * var(--motion-reduced)) var(--motion-ease-out), background calc(var(--motion-duration-fast) * var(--motion-reduced)) var(--motion-ease-out), border-color calc(var(--motion-duration-fast) * var(--motion-reduced)) var(--motion-ease-out);
       svg { width: 16px; height: 16px; }
 
       &:hover {
@@ -2607,7 +2667,7 @@ h4, h5, h6 {
     a {
       font-size: 0.875rem;
       color: rgba(255,255,255,0.55);
-      transition: color 0.2s;
+      transition: color calc(var(--motion-duration-fast) * var(--motion-reduced)) var(--motion-ease-out);
 
       &:hover { color: #fff; }
     }
