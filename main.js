@@ -582,3 +582,81 @@ document.querySelector('.bio__name')?.addEventListener('click', e => {
   e.preventDefault();
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
+
+// ============================================================
+// WHATSAPP CHAT WIDGET (sağ alt künc)
+// Nömrəni burada dəyişin (ölkə kodu ilə, + işarəsisiz)
+// ============================================================
+const WHATSAPP_NUMBER = '994501234567';
+
+function openWhatsApp(text) {
+  const encoded = encodeURIComponent(text || '');
+  const url = encoded ? `https://wa.me/${WHATSAPP_NUMBER}?text=${encoded}` : `https://wa.me/${WHATSAPP_NUMBER}`;
+  window.open(url, '_blank', 'noopener,noreferrer');
+}
+
+function initWhatsAppWidget() {
+  const widget = document.getElementById('whatsapp-widget');
+  if (!widget) return;
+
+  const btn = widget.querySelector('.whatsapp-widget__btn');
+  const panel = widget.querySelector('.whatsapp-widget__panel');
+  const closeBtn = widget.querySelector('.whatsapp-widget__panel-close');
+  const quickBtns = widget.querySelectorAll('.whatsapp-widget__quick-btn');
+  const customInput = widget.querySelector('.whatsapp-widget__custom-input');
+  const customSend = widget.querySelector('.whatsapp-widget__custom-send');
+
+  function openPanel() {
+    panel?.classList.add('is-open');
+    btn?.setAttribute('aria-expanded', 'true');
+  }
+  function closePanel() {
+    panel?.classList.remove('is-open');
+    btn?.setAttribute('aria-expanded', 'false');
+  }
+  function togglePanel() {
+    if (panel?.classList.contains('is-open')) closePanel();
+    else openPanel();
+  }
+
+  btn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    togglePanel();
+  });
+  closeBtn?.addEventListener('click', closePanel);
+
+  quickBtns.forEach((b) => {
+    b.addEventListener('click', (e) => {
+      e.preventDefault();
+      const msg = (b.getAttribute('data-msg') || b.textContent || '').trim();
+      if (msg) openWhatsApp(msg);
+      closePanel();
+    });
+  });
+
+  function sendCustom() {
+    const msg = (customInput?.value || '').trim();
+    if (msg) {
+      openWhatsApp(msg);
+      if (customInput) customInput.value = '';
+      closePanel();
+    }
+  }
+  customSend?.addEventListener('click', sendCustom);
+  customInput?.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      sendCustom();
+    }
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!panel?.classList.contains('is-open')) return;
+    if (!widget.contains(e.target)) closePanel();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closePanel();
+  });
+}
+
+document.addEventListener('DOMContentLoaded', initWhatsAppWidget);
