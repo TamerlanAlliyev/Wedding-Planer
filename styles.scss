@@ -15,27 +15,29 @@
   --letter-spacing-tight: -0.03em;
   --letter-spacing-wide: 0.08em;
 
+  // Palet: mavi‑boz vurğu, açıq mavi‑ağ arka plan, tünd boz mətn — soft, premium, editorial
   --color-white:       #FFFFFF;
-  --color-soft-gray:   #EEF5F9;
-  --color-light-blue:  #CCE4F5;
+  --color-bg-ivory:   #F2F6F9;
+  --color-soft-gray:   #E8EEF2;
+  --color-light-blue:  #D4E4EF;
   --color-medium-blue: #7CADCF;
-  --color-medium-blue-hover: #5a9bbf;
+  --color-medium-blue-hover: #6a9bc0;
   --color-medium-blue-10: rgba(124,173,207,0.10);
   --color-medium-blue-20: rgba(124,173,207,0.20);
-  --color-deep-dark:   #262321;
-  --color-deep-dark-80: rgba(38,35,33,0.80);
+  --color-deep-dark:   #2E3A45;
+  --color-deep-dark-80: rgba(46,58,69,0.80);
 
-  --bg-primary:    var(--color-white);
+  --bg-primary:    var(--color-bg-ivory);
   --bg-secondary:  var(--color-soft-gray);
   --text-primary:  var(--color-deep-dark);
-  --text-secondary:#4a4542;
-  --text-muted:    #8a8480;
+  --text-secondary: #4A5568;
+  --text-muted:    #6B7A8A;
   --border-soft:   var(--color-light-blue);
   --footer-bg:     var(--color-deep-dark);
 
-  --shadow-soft:   0 2px 16px 0 rgba(38,35,33,0.06), 0 1px 4px 0 rgba(38,35,33,0.04);
-  --shadow-medium: 0 8px 32px 0 rgba(38,35,33,0.10), 0 2px 8px 0 rgba(38,35,33,0.06);
-  --shadow-strong: 0 24px 64px 0 rgba(38,35,33,0.18), 0 4px 16px 0 rgba(38,35,33,0.10);
+  --shadow-soft:   0 2px 16px 0 rgba(46,58,69,0.06), 0 1px 4px 0 rgba(46,58,69,0.04);
+  --shadow-medium: 0 8px 32px 0 rgba(46,58,69,0.08), 0 2px 8px 0 rgba(46,58,69,0.05);
+  --shadow-strong: 0 24px 64px 0 rgba(46,58,69,0.12), 0 4px 16px 0 rgba(46,58,69,0.08);
 
   --radius-sm: 8px;
   --radius-md: 12px;
@@ -356,7 +358,7 @@ h4, h5, h6 {
   position: fixed;
   inset: 0;
   z-index: 99;
-  background: rgba(38,35,33,0.97);
+  background: rgba(46,58,69,0.97);
   backdrop-filter: blur(20px);
   display: flex;
   flex-direction: column;
@@ -421,15 +423,15 @@ h4, h5, h6 {
     position: absolute;
     inset: 0;
     background: linear-gradient(to bottom,
-      rgba(38,35,33,0.45) 0%,
-      rgba(38,35,33,0.15) 40%,
-      rgba(38,35,33,0.60) 100%);
+      rgba(46,58,69,0.45) 0%,
+      rgba(46,58,69,0.15) 40%,
+      rgba(46,58,69,0.60) 100%);
 
     &::after {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(to right, rgba(38,35,33,0.35) 0%, transparent 60%);
+      background: linear-gradient(to right, rgba(46,58,69,0.35) 0%, transparent 60%);
     }
   }
 
@@ -611,7 +613,7 @@ h4, h5, h6 {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(to top, rgba(38,35,33,0.3) 0%, transparent 50%);
+      background: linear-gradient(to top, rgba(46,58,69,0.3) 0%, transparent 50%);
     }
   }
 
@@ -754,12 +756,12 @@ h4, h5, h6 {
     font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    box-shadow: 0 4px 16px rgba(38,35,33,0.18);
+    box-shadow: 0 4px 16px rgba(46,58,69,0.18);
     transition: all var(--dur-normal) var(--ease-out);
 
     &:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(38,35,33,0.25);
+      box-shadow: 0 8px 24px rgba(46,58,69,0.25);
     }
   }
 }
@@ -784,7 +786,7 @@ h4, h5, h6 {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, rgba(38,35,33,0.85) 0%, rgba(38,35,33,0.65) 50%, rgba(124,173,207,0.25) 100%);
+      background: linear-gradient(135deg, rgba(46,58,69,0.85) 0%, rgba(46,58,69,0.65) 50%, rgba(124,173,207,0.25) 100%);
     }
   }
 
@@ -1117,7 +1119,7 @@ h4, h5, h6 {
         content: '';
         position: absolute;
         inset: 0;
-        background: linear-gradient(to top, rgba(38,35,33,0.45) 0%, transparent 55%);
+        background: linear-gradient(to top, rgba(46,58,69,0.45) 0%, transparent 55%);
       }
     }
 
@@ -1631,7 +1633,7 @@ h4, h5, h6 {
     &-overlay {
       position: absolute;
       inset: 0;
-      background: rgba(38,35,33,0.45);
+      background: rgba(46,58,69,0.45);
       backdrop-filter: blur(2px);
       display: flex;
       align-items: center;
@@ -1667,7 +1669,7 @@ h4, h5, h6 {
   align-items: center;
   justify-content: center;
   padding: 1rem;
-  background: rgba(38,35,33,0.95);
+  background: rgba(46,58,69,0.95);
   backdrop-filter: blur(20px);
   opacity: 0;
   pointer-events: none;
@@ -2059,7 +2061,7 @@ h4, h5, h6 {
   &__gradient {
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(38,35,33,0.90) 0%, rgba(38,35,33,0.70) 50%, rgba(124,173,207,0.15) 100%);
+    background: linear-gradient(135deg, rgba(46,58,69,0.90) 0%, rgba(46,58,69,0.70) 50%, rgba(124,173,207,0.15) 100%);
   }
 
   &__glow {
