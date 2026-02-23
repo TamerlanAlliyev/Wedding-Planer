@@ -343,7 +343,7 @@ em{font-family:'Ephesis',cursive;font-style:normal;font-weight:400}
 
 /* ── TESTIMONIALS ──────────────────────────────────────────── */
 /* CSS custom props drive all layout — JS reads, never writes widths */
-.testimonials{--t-pad:clamp(1.5rem,4vw,2.5rem);--t-gap:1.5rem;--t-w:clamp(260px,78vw,300px);padding:var(--space-section) 0}
+.testimonials{--t-pad:clamp(1.5rem,4vw,2.5rem);--t-gap:1.5rem;--t-w:clamp(260px,78vw,300px);background:var(--bg-primary);padding:var(--space-section) 0}
 @media(min-width:580px){.testimonials{--t-w:clamp(280px,55vw,380px)}}
 @media(min-width:900px){.testimonials{--t-w:clamp(340px,44vw,420px)}}
 @media(min-width:1200px){.testimonials{--t-w:clamp(340px,30vw,370px)}}

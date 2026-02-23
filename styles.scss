@@ -1882,6 +1882,7 @@ h4, h5, h6 {
   @media (min-width: 900px)  { --t-w: clamp(340px, 44vw, 420px); }  // 2 + peek
   @media (min-width: 1200px) { --t-w: clamp(340px, 30vw, 370px); }  // 3 + peek
 
+  background: var(--bg-primary);
   @include section-pad;
   // No overflow:hidden — scroll viewport handles clipping
 
