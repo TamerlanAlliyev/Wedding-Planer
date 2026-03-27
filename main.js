@@ -587,7 +587,7 @@ document.querySelector('.bio__name')?.addEventListener('click', e => {
 // WHATSAPP CHAT WIDGET (sağ alt künc)
 // Nömrəni burada dəyişin (ölkə kodu ilə, + işarəsisiz)
 // ============================================================
-const WHATSAPP_NUMBER = '994501234567';
+const WHATSAPP_NUMBER = '994557516169';
 
 function openWhatsApp(text) {
   const encoded = encodeURIComponent(text || '');
