@@ -20,6 +20,7 @@ em{font-family:'Ephesis',cursive;font-style:normal;font-weight:400}
 .site-header__logo:hover{color:var(--color-medium-blue)}
 .site-header__logo:focus-visible{outline:2px solid var(--color-medium-blue);outline-offset:2px}
 .site-header__logo-icon{width:32px;height:32px;border-radius:50%;background:var(--color-medium-blue);display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:600;color:#fff;flex-shrink:0}
+.site-header__logo img{display:block;height:36px;width:auto}
 /* Mobile: nav collapsed, toggle visible */
 .site-header__nav{display:none}
 .site-header__list{list-style:none;display:flex;align-items:center;flex-wrap:wrap;gap:clamp(.75rem,2vw,1.5rem)}
@@ -500,6 +501,7 @@ em{font-family:'Ephesis',cursive;font-style:normal;font-weight:400}
 @media(min-width:768px){.footer__main{grid-template-columns:1.8fr 1fr 1fr}}
 .footer__brand-logo{display:flex;align-items:center;gap:.5rem;margin-bottom:1.25rem}
 .footer__brand-logo-icon{width:36px;height:36px;border-radius:50%;background:var(--color-medium-blue);display:flex;align-items:center;justify-content:center;font-family:var(--font-serif);font-size:1rem;font-weight:600;color:#fff}
+.footer__brand-logo img{display:block;height:36px;width:auto}
 .footer__brand-logo span{font-family:var(--font-serif);font-size:1.25rem;font-weight:600;color:#fff;letter-spacing:.01em}
 .footer__brand p{font-size:.875rem;color:rgba(255,255,255,.55);line-height:1.75;margin-bottom:1.75rem;max-width:280px}
 .footer__brand-location{display:flex;align-items:center;gap:.5rem;margin-bottom:1.25rem}
